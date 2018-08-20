@@ -31,17 +31,14 @@ noremap <C-F10> 2<C-w>-
 :noremap <C-h> <C-w>h
 :noremap <C-k> <C-w>k
 :noremap <C-l> <C-w>l
-" Change register x command copies to. Change register x command copies to.
+" Change register d and x command copies to
 :noremap x "xx
 :noremap X "xX
-" Add nice copy shortcuts
-:noremap <leader>yy ^yg_
-:noremap <leader>yl yg_
-:noremap <leader>yh y^
-" Add nice no clipboard delete shortcuts
-:noremap <leader>dd "xdd
-:noremap <leader>dl "xd$
-:noremap <leader>xh "xd^
+" Add shortcut for normal delete copy behavior
+nnoremap <leader>d "*d
+nnoremap d "xd
+
+
 " shortcut to yank all
 noremap <leader>ay :%y+<CR>
 "
