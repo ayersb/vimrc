@@ -11,10 +11,11 @@ function! SwapRoot()
         if (getline(".") =~ ".*\'\\~.*")
                 s/'\~/'$P/
                 "normal! $F/
+                call cursor(startline, startcol)
         elseif ((getline(".") =~ ".*\'\\$P.*"))
                 s/'\$P/'\~/
                 "normal! $F/
-                call cursor(startline, startcol-1)
+                call cursor(startline, startcol)
         else
                 echo "No Match"
         endif
