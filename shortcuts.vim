@@ -65,8 +65,7 @@ noremap <c-w><Right> :+tabmove<cr>
 noremap <C-p> :FZF<CR>
 
 " Nerd Tree Shortcuts
-:noremap <leader>tt :NERDTreeFocus<CR>
-:noremap <leader>th :NERDTreeToggle<CR>
+:noremap <leader>tt :NERDTreeToggle<CR>
 :noremap <leader>tf :NERDTreeFind<CR>
 
 " Git Fugitive Shortcuts

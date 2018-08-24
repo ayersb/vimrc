@@ -11,11 +11,11 @@ function! SwapRoot()
         if (getline(".") =~ ".*\'\\~.*")
                 s/'\~/'$P/
                 "normal! $F/
-                call cursor(startline, startcol)
+                call cursor(startline, startcol+1)
         elseif ((getline(".") =~ ".*\'\\$P.*"))
                 s/'\$P/'\~/
                 "normal! $F/
-                call cursor(startline, startcol)
+                call cursor(startline, startcol-1)
         else
                 echo "No Match"
         endif
@@ -32,18 +32,12 @@ autocmd Filetype python :setlocal colorcolumn=80
 autocmd Filetype javascript :setlocal colorcolumn=120
 
 autocmd Filetype javascript :noremap <buffer> <F8> isetTimeout(() => console.log(), 1000)<ESC>F,hi
+" For ~ based node root imports
 autocmd Filetype javascript :noremap <buffer> <F7> :call SwapRoot()<CR>
-autocmd BufWritePre *.js :Prettier<CR>
 autocmd BufWritePre *.js :%s/^\(import.*from.*\)\$P\(.*\)$/\1\~\2/e
-
-autocmd Filetype javascript :noremap <buffer> <leader>ff :w<CR>:Fixmyjs<CR>:w<CR>:Prettier<CR>:w<CR>
-autocmd Filetype python :noremap <buffer> <leader>ff :Autoformat<CR>
 
 " For oracle SQLcli
 autocmd BufRead,BufNewFile afiedt.buf :set syntax=sql
-
-" enhance YCM JS completion with tern's smarts
-autocmd FileType javascript setlocal omnifunc=tern#Complete
 
 " autocmd FileType *.txt set completefunc=emoji#complete
 

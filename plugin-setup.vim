@@ -63,6 +63,19 @@ let g:ale_sign_column_always = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {
+\ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'], 'json': ['fixjson', 'jsonlint'],
+\ 'vim': ['vint'], 'yaml': ['prettier'], 'bash': ['language-server', 'shellcheck', 'shfmt'], 'sh': ['shfmt', 'shellcheck'],
+\ 'python': ['autopep8', 'black'], 'graphql': ['eslint', 'prettier'], 'go': ['gofmt', 'goimports', 'golint'],
+\ 'dockerfile': ['hadolint'],  'make': ['checkmake'], 'markdown': ['mdl', 'prettier'], 'sql': ['sqlint'],
+\ 'awk': ['gawk'],
+\}
+let g:ale_fixers = {
+\  'javascript': ['prettier', 'eslint'],
+\  'go': ['gofmt', 'golint'],
+\  'python': ['autopep8', 'black'],
+\}
+let g:ale_fix_on_save = 1
 let g:ale_javascript_eslint_options = '--config /Users/bayers/gitv/platform/config/eslint.js'
 hi! link ALEError DiffDelete
 Plug 'itchyny/lightline.vim'
@@ -110,9 +123,22 @@ Plug 'junegunn/fzf.vim'
 " Add python auto-indent
 Plug 'vim-scripts/indentpython.vim', { 'for': 'python'}
 " Auto complete support
-Plug 'valloric/YouCompleteMe', { 'do': './install.py --go-completer --js-completer --rust-completer' }
-let g:ycm_filetype_blacklist = { 'txt': 1, 'md': 1}
-let g:ycm_register_as_syntastic_checker = 0
+" Plug 'valloric/YouCompleteMe', { 'do': './install.py --go-completer --js-completer --rust-completer' }
+" let g:ycm_filetype_blacklist = { 'txt': 1, 'md': 1}
+" let g:ycm_register_as_syntastic_checker = 0
+" Enable using tab for completions
+Plug 'ervandew/supertab'
+let g:SuperTabDefaultCompletionType = "<c-n>"
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
+
+let g:deoplete#enable_at_startup = 1
+let g:neosnippet#enable_completed_snippet = 1
 
 " Highlight trailing whitespace :FixWhitespace to fix
 Plug 'bronson/vim-trailing-whitespace'
