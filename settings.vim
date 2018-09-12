@@ -13,7 +13,6 @@ let g:terminal_color_0 =  "#ffffff"
 " Set color scheme & Backgrouda
 colorscheme base16-epistemi
 " colorscheme base16-chalk
-" hi MatchParen guibg=reverse guifg=reverse gui=bold
 " :set lazyredraw
 " Show line and character number in bottom right
 :set ruler
@@ -25,7 +24,6 @@ colorscheme base16-epistemi
 " Set column 80 to be colored
 :set colorcolumn=120
 
-" set hilightsearch false
 " :set hlsearch! # now controled by incsearch
 
 " Case-sensitive only if search contains uppercase characters

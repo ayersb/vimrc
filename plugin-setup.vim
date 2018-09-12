@@ -10,6 +10,7 @@ Plug 'jremmen/vim-ripgrep'
 
 " Add Syntax Highlighting For Many Languages
 Plug 'sheerun/vim-polyglot'
+Plug 'ElmCast/elm-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'jparise/vim-graphql'
 Plug 'ayersb/vim-pgsql'
@@ -20,9 +21,7 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Enable flow plugin in vim-javascript
 let g:javascript_plugin_flow = 1
 
-" Plugin vim-js-sql below was manually edited
-"Plugin 'lalitkapoor/vim-js-sql'
-"
+
 " Vim node utlites
 Plug 'moll/vim-node'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -31,6 +30,11 @@ let g:ctrlp_cmd = ''
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
 " Add tern javascript checking Plug 'ternjs/tern_for_vim' Add nice js doc thing
 Plug 'heavenshell/vim-jsdoc'
+
+" Reasonable auto swap in favor of annoying swap messages
+Plug 'gioele/vim-autoswap'
+set title titlestring=
+let g:autoswap_detect_tmux = 1
 
 " The *MOST* imporant plugin
 Plug 'junegunn/vim-emoji'
@@ -54,8 +58,8 @@ nnoremap <F5> :UndotreeToggle<cr>
 
 " Taboo for tabs
 Plug 'gcmt/taboo.vim'
-let g:taboo_tab_format=" %N:%f%m(%W)"
-let g:taboo_renamed_tab_format=" %N:[%l](%W)"
+let g:taboo_tab_format=' %N:%f%m(%W)'
+let g:taboo_renamed_tab_format=' %N:[%l](%W)'
 set guioptions-=e
 " Ale syntax linter
 Plug 'w0rp/ale'
@@ -65,18 +69,22 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
 \ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'], 'json': ['fixjson', 'jsonlint'],
-\ 'vim': ['vint'], 'yaml': ['prettier'], 'bash': ['language-server', 'shellcheck', 'shfmt'], 'sh': ['shfmt', 'shellcheck'],
+\ 'vim': ['vint'], 'yaml': ['prettier'], 'bash': ['language-server', 'shfmt'],
 \ 'python': ['autopep8', 'black'], 'graphql': ['eslint', 'prettier'], 'go': ['gofmt', 'goimports', 'golint'],
-\ 'dockerfile': ['hadolint'],  'make': ['checkmake'], 'markdown': ['mdl', 'prettier'], 'sql': ['sqlint'],
-\ 'awk': ['gawk'],
+\ 'dockerfile': ['hadolint'],  'make': ['checkmake'], 'markdown': ['mdl', 'prettier', 'vale'], 'sql': ['sqlint'],
+\ 'awk': ['gawk'], 'text': ['proselint', 'vale'],
 \}
 let g:ale_fixers = {
+\  'text': ['remove_trailing_lines', 'trim_whitespace'],
 \  'javascript': ['prettier', 'eslint'],
-\  'go': ['gofmt', 'golint'],
+\  'elm': ['elm-format'],
+\  'go': ['gofmt', 'goimports'],
 \  'python': ['autopep8', 'black'],
+\  'json': ['fixjson', 'prettier'],
+\  'bash': ['shmt']
 \}
 let g:ale_fix_on_save = 1
-let g:ale_javascript_eslint_options = '--config /Users/bayers/gitv/platform/config/eslint.js'
+" let g:ale_javascript_eslint_options = '--config /Users/bayers/gitv/platform/config/eslint.js'
 hi! link ALEError DiffDelete
 Plug 'itchyny/lightline.vim'
 
@@ -153,6 +161,8 @@ let g:formatters_buf = ['pg_formater_sql']
 " Easy way to run eslint
 Plug 'ruanyl/vim-fixmyjs'
 let g:fixmyjs_rc_path = '/Users/bayers/gitv/platform/config/eslint.js'
+" Better text writing for vim
+Plug 'reedes/vim-pencil.git'
 
 " Run pretter js from vim
 Plug 'prettier/vim-prettier', {'for': 'javascript'}
@@ -172,7 +182,11 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
+" Plugin for merge conflits dependent on fugitive
+Plug 'christoomey/vim-conflicted'
 
+
+Plug 'neomutt/neomutt.vim'
 " Initialize plugin system
 call plug#end()
 filetype plugin indent on

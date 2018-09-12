@@ -21,7 +21,7 @@ noremap <C-F10> 2<C-w>-
 :noremap <leader>nh :set hlsearch!<CR>
 "
 " Start a ripgrep search
-:noremap <leader>r q:iRg<Space>''<Esc>i
+:noremap <leader>r q:iRg<Space>""<Esc>i
 " Toggle folding by syntax
 :noremap <leader>fms :setlocal foldmethod=syntax<CR>
 :noremap <leader>fmi :setlocal foldmethod=indent<CR>
@@ -86,7 +86,6 @@ noremap <leader>tu :UndotreeToggle<CR>
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-set hlsearch
 let g:incsearch#auto_nohlsearch = 1
 map n  <Plug>(incsearch-nohl-n)
 map N  <Plug>(incsearch-nohl-N)
