@@ -21,7 +21,7 @@ noremap <C-F10> 2<C-w>-
 :noremap <leader>nh :set hlsearch!<CR>
 "
 " Start a ripgrep search
-:noremap <leader>r q:iRg<Space>""<Esc>i
+:noremap <leader>r q:iRg<Space>""<ESC>i
 " Toggle folding by syntax
 :noremap <leader>fms :setlocal foldmethod=syntax<CR>
 :noremap <leader>fmi :setlocal foldmethod=indent<CR>
@@ -61,12 +61,14 @@ noremap <c-w><Right> :+tabmove<cr>
 " Plugin Shortcuts
 "
 "
-" Use Fzf instead of CtrlP
+" Use Fzf with fd for fuzzy find
 noremap <C-p> :FZF<CR>
+noremap <leader>p :FZF<CR>
 
 " Nerd Tree Shortcuts
 :noremap <leader>tt :NERDTreeToggle<CR>
 :noremap <leader>tf :NERDTreeFind<CR>
+:noremap <leader>t<leader>t :NERDTree<CR>
 
 " Git Fugitive Shortcuts
 noremap <leader>gc :Gcommit<CR>
@@ -101,3 +103,11 @@ map <Leader>k <Plug>(easymotion-k)
 
 " Quickly print the last 10 messages
 map <leader>m :10messages<CR>
+
+let g:bracket_pairs = {
+    \ '{':"}\<c-g>U\<left>",
+    \ '(':")\<c-g>U\<left>",
+    \ '[':"]\<c-g>U\<left>"
+    \ }
+inoremap <expr> = get(g:bracket_pairs, getline('.')[col('.')-2], '=')
+

@@ -34,7 +34,7 @@ Plug 'heavenshell/vim-jsdoc'
 " Reasonable auto swap in favor of annoying swap messages
 Plug 'gioele/vim-autoswap'
 set title titlestring=
-let g:autoswap_detect_tmux = 1
+" let g:autoswap_detect_tmux = 1
 
 " The *MOST* imporant plugin
 Plug 'junegunn/vim-emoji'
@@ -68,20 +68,27 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_linters = {
-\ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'], 'json': ['fixjson', 'jsonlint'],
-\ 'vim': ['vint'], 'yaml': ['prettier'], 'bash': ['language-server', 'shfmt'],
-\ 'python': ['autopep8', 'black'], 'graphql': ['eslint', 'prettier'], 'go': ['gofmt', 'goimports', 'golint'],
-\ 'dockerfile': ['hadolint'],  'make': ['checkmake'], 'markdown': ['mdl', 'prettier', 'vale'], 'sql': ['sqlint'],
 \ 'awk': ['gawk'], 'text': ['proselint', 'vale'],
+\ 'bash': ['language-server', 'shfmt'],
+\ 'dockerfile': ['hadolint'],  'make': ['checkmake'],
+\ 'go': ['gofmt', 'goimports', 'golint'],
+\ 'graphql': ['eslint', 'prettier'],
+\ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'],
+\ 'json': ['fixjson', 'jsonlint'],
+\ 'markdown': ['mdl', 'prettier', 'vale'],
+\ 'python': ['autopep8',  'prospector',  'black'],
+\ 'sql': ['sqlint'],
+\ 'vim': ['vint'], 'yaml': ['prettier'],
 \}
 let g:ale_fixers = {
-\  'text': ['remove_trailing_lines', 'trim_whitespace'],
-\  'javascript': ['prettier', 'eslint'],
+\  'bash': ['shmt'],
 \  'elm': ['elm-format'],
 \  'go': ['gofmt', 'goimports'],
-\  'python': ['autopep8', 'black'],
+\  'javascript': ['eslint'],
 \  'json': ['fixjson', 'prettier'],
-\  'bash': ['shmt']
+\  'markdown': ['remove_trailing_lines', 'trim_whitespace'],
+\  'text': ['remove_trailing_lines', 'trim_whitespace'],
+\  'python': ['autopep8', 'black'],
 \}
 let g:ale_fix_on_save = 1
 " let g:ale_javascript_eslint_options = '--config /Users/bayers/gitv/platform/config/eslint.js'
@@ -93,34 +100,34 @@ function! LightLineFilename()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \           [ 'readonly', 'relativepath', 'modified' ]
-      \    ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-      \              [ 'fileencoding', 'filetype' ]
-      \     ]
-      \ },
-      \ 'inactive': {
-      \    'left': [[ 'readonly', 'relativepath', 'modified' ]],
-      \    'right': [['lineinfo'], ['percent'], [ 'fileencoding', 'filetype' ]]
-      \   },
-      \ 'component_expand': {
-      \   'linter_checking': 'lightline#ale#checking',
-      \   'linter_warnings': 'lightline#ale#warnings',
-      \   'linter_errors': 'lightline#ale#errors',
-      \   'linter_ok': 'lightline#ale#ok',
-      \ },
-      \ 'component_type': {
-      \     'linter_checking': 'left',
-      \     'linter_warnings': 'warning',
-      \     'linter_errors': 'error',
-      \     'linter_ok': 'left',
-      \ }
-      \}
+  \ 'colorscheme': 'jellybeans',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ],
+  \           [ 'readonly', 'relativepath', 'modified' ]
+  \   ],
+  \   'right': [ [ 'lineinfo' ],
+  \              [ 'percent' ],
+  \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
+  \              [ 'fileencoding', 'filetype' ]
+  \     ]
+  \ },
+  \ 'inactive': {
+  \    'left': [[ 'readonly', 'relativepath', 'modified' ]],
+  \    'right': [['lineinfo'], ['percent'], [ 'fileencoding', 'filetype' ]]
+  \   },
+  \ 'component_expand': {
+  \   'linter_checking': 'lightline#ale#checking',
+  \   'linter_warnings': 'lightline#ale#warnings',
+  \   'linter_errors': 'lightline#ale#errors',
+  \   'linter_ok': 'lightline#ale#ok',
+  \ },
+  \ 'component_type': {
+  \     'linter_checking': 'left',
+  \     'linter_warnings': 'warning',
+  \     'linter_errors': 'error',
+  \     'linter_ok': 'left',
+  \ }
+  \}
 Plug 'maximbaz/lightline-ale'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -136,7 +143,7 @@ Plug 'vim-scripts/indentpython.vim', { 'for': 'python'}
 " let g:ycm_register_as_syntastic_checker = 0
 " Enable using tab for completions
 Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = '<c-n>'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'wokalski/autocomplete-flow'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
@@ -162,11 +169,16 @@ let g:formatters_buf = ['pg_formater_sql']
 Plug 'ruanyl/vim-fixmyjs'
 let g:fixmyjs_rc_path = '/Users/bayers/gitv/platform/config/eslint.js'
 " Better text writing for vim
-Plug 'reedes/vim-pencil.git'
+Plug 'reedes/vim-pencil'
 
 " Run pretter js from vim
-Plug 'prettier/vim-prettier', {'for': 'javascript'}
-nmap <Leader>fp <Plug>(Prettier)
+Plug 'prettier/vim-prettier', {'do': 'npm install'}
+let g:prettier#autoformat = 0
+let g:prettier#quickfix_enabled = 0
+augroup prettier
+  autocmd!
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
+augroup END
 
 " Vimtex ~ Latex plugin for vim
 "let g:livepreview_previewer = 'open -a Preview'
@@ -182,6 +194,8 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
+Plug 'tpope/vim-obsession'
+Plug 'plasticboy/vim-markdown'
 " Plugin for merge conflits dependent on fugitive
 Plug 'christoomey/vim-conflicted'
 
