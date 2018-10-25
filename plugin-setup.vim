@@ -71,14 +71,15 @@ let g:ale_linters = {
 \ 'awk': ['gawk'], 'text': ['proselint', 'vale'],
 \ 'bash': ['language-server', 'shfmt'],
 \ 'dockerfile': ['hadolint'],  'make': ['checkmake'],
-\ 'go': ['gofmt', 'goimports', 'golint'],
+\ 'go': ['gofmt', 'gomod', 'govet', 'gotype', 'gometalinter', 'gobuild',  'goimports', 'golint'],
 \ 'graphql': ['eslint', 'prettier'],
 \ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'],
 \ 'json': ['fixjson', 'jsonlint'],
 \ 'markdown': ['mdl', 'prettier', 'vale'],
-\ 'python': ['autopep8',  'prospector',  'black'],
+\ 'python': ['autopep8',  'yapf',  'black'],
 \ 'sql': ['sqlint'],
-\ 'vim': ['vint'], 'yaml': ['prettier'],
+\ 'vim': ['vint'],
+\ 'yaml': ['swaglint', 'yamllint', 'prettier'],
 \}
 let g:ale_fixers = {
 \  'bash': ['shmt'],
@@ -86,12 +87,12 @@ let g:ale_fixers = {
 \  'go': ['gofmt', 'goimports'],
 \  'javascript': ['eslint'],
 \  'json': ['fixjson', 'prettier'],
-\  'markdown': ['remove_trailing_lines', 'trim_whitespace'],
 \  'text': ['remove_trailing_lines', 'trim_whitespace'],
-\  'python': ['autopep8', 'black'],
+\  'python': ['autopep8', 'yapf', 'isort', 'black'],
+\  'yaml': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_fix_on_save = 1
-" let g:ale_javascript_eslint_options = '--config /Users/bayers/gitv/platform/config/eslint.js'
+
 hi! link ALEError DiffDelete
 Plug 'itchyny/lightline.vim'
 
@@ -167,7 +168,6 @@ let g:formatters_buf = ['pg_formater_sql']
 
 " Easy way to run eslint
 Plug 'ruanyl/vim-fixmyjs'
-let g:fixmyjs_rc_path = '/Users/bayers/gitv/platform/config/eslint.js'
 " Better text writing for vim
 Plug 'reedes/vim-pencil'
 
