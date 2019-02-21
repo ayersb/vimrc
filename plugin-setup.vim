@@ -137,10 +137,6 @@ Plug '/usr/local/opt/fzf'
 Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 
-
-Plug 'miyakogi/seiya.vim'
-let g:seiya_target_groups = has('nvim') ? ['guibg'] : ['ctermbg']
-let g:seiya_auto_enable=1
 " Enable using tab for completions
 Plug 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = '<c-n>'
