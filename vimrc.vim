@@ -11,6 +11,8 @@ if has("nvim")
 
   set viminfo+=n~/.vim/viminfo
   " Run last
-  highlight Search guifg=purple4 guibg=SeaGreen
+  highlight Search guifg=orchid1 guibg=gray16
+  highlight IncSearch guifg=slateblue4 guibg=orchid3 gui=bold
+  highlight Substitute guifg=orchid1 guibg=gray16
   highlight MatchParen guifg=aquamarine3 guibg=bisque4 gui=bold
 endif

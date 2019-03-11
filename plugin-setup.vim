@@ -67,7 +67,7 @@ let g:ale_linters = {
 \ 'text': ['proselint', 'vale'],
 \ 'bash': ['language-server', 'shfmt'],
 \ 'dockerfile': ['hadolint'],
-\ 'go': ['gofmt', 'gomod', 'govet', 'gotype', 'gometalinter', 'gobuild',  'goimports', 'golint'],
+\ 'go': ['gofmt', 'gomod', 'govet', 'gometalinter',  'goimports', 'golint'],
 \ 'graphql': ['eslint', 'prettier'],
 \ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'],
 \ 'typescript': ['tsserver', 'tslint', 'prettier'],

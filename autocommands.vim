@@ -22,9 +22,9 @@ augroup textFiles
 
   autocmd Filetype markdown,mkd,gitcommit call lexical#init()
 
-  autocmd FileType text call pencil#init()
-                            \ | call lexical#init()
-                            \ | call litecorrect#init()
+  au BufRead,BufNewFile *.txt,*.pd.md call pencil#init()
+                                  \ | call lexical#init()
+                                  \ | call litecorrect#init()
 
   autocmd Filetype markdown setlocal colorcolumn=80 ts=2 sts=2 sw=2
   autocmd FileType text setlocal colorcolumn=61 tw=60
