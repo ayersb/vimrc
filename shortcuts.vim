@@ -17,7 +17,8 @@ noremap <C-F11> 2<C-w>-
 noremap <leader>b :Buffers<CR>
 " Toggle highlighting for search
 " 	On
-noremap <leader>h :set hlsearch<CR>
+" nnoremap <leader>h :if (hlstate%2 == 0) \| nohlsearch \| else \| set hlsearch \| endif \| let hlstate=hlstate+1<cr>
+:nnoremap <silent><expr> <leader>h (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 "	Off
 noremap <leader>nh :set hlsearch!<CR>
 "

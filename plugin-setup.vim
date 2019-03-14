@@ -67,7 +67,7 @@ let g:ale_linters = {
 \ 'text': ['proselint', 'vale'],
 \ 'bash': ['language-server', 'shfmt'],
 \ 'dockerfile': ['hadolint'],
-\ 'go': ['gofmt', 'gomod', 'govet', 'gometalinter',  'goimports', 'golint'],
+\ 'go': ['golangci-lint'],
 \ 'graphql': ['eslint', 'prettier'],
 \ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'],
 \ 'typescript': ['tsserver', 'tslint', 'prettier'],
@@ -93,6 +93,7 @@ let g:ale_fixers = {
 \  'yaml': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_fix_on_save = 1
+let g:ale_go_golangci_lint_package = 1
 
 hi! link ALEError DiffDelete
 Plug 'itchyny/lightline.vim'
