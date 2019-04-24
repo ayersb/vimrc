@@ -22,7 +22,7 @@ augroup textFiles
 
   autocmd Filetype markdown,mkd,gitcommit call lexical#init()
 
-  au BufRead,BufNewFile *.txt,*.txt.md call pencil#init()
+  au BufRead,BufNewFile *.txt,*.txt.md,*.md.txt call pencil#init()
                                   \ | call lexical#init()
                                   \ | call litecorrect#init()
 

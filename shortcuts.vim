@@ -11,8 +11,8 @@ noremap <M-w> <C-w>
 " Resize Buffers
 noremap <C-F9> 2<C-w>>
 noremap <C-F12> 2<C-w><
-noremap <C-F10> 2<C-w>+
 noremap <C-F11> 2<C-w>-
+noremap <C-F10> 2<C-w>+
 " Shortcut for buffer switcher
 noremap <leader>b :Buffers<CR>
 " Toggle highlighting for search

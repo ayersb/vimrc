@@ -8,11 +8,11 @@ set runtimepath+=/usr/local/bin/python
 " Force terminal to allow 256-color
 let &t_Co=256
 let base16colorspace=256
-let gterminal_color_0 =  "#ffffff"
+let gterminal_color_0 =  '#ffffff'
 set cursorline
 
 " Set color scheme & Backgroud
-if has("nvim")
+if has('nvim')
   set viminfo+=n~/.vim/viminfo
   set undofile
   set inccommand=nosplit
@@ -29,10 +29,10 @@ set wildmode=list:longest
 " Show line and character number in bottom right
 set ruler
 " Show line numbers on right
-set nu
+set number
 " Set auto indent and smart indent
-set ai
-set si
+set autoindent
+set smartindent
 " Set column 80 to be colored
 set colorcolumn=120
 
@@ -43,7 +43,7 @@ set ignorecase
 set smartcase
 
 " Use the system clipboard as the default register
-if has("mac")
+if has('mac')
   set clipboard=unnamed
 else
   set clipboard=unnamedplus
@@ -55,6 +55,6 @@ syntax on
 set timeoutlen=1000
 set ttimeoutlen=0
 " Set leader character to <Space>
-let mapleader=" "
+let mapleader=' '
 
 set cmdwinheight=2

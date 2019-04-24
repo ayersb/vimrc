@@ -3,7 +3,7 @@
 
 source $GLOBAL_SETTINGS_DIR/vimrc-files/settings.vim
 
-if has("nvim")
+if has('nvim')
   source $GLOBAL_SETTINGS_DIR/vimrc-files/plugin-setup.vim
   source $GLOBAL_SETTINGS_DIR/vimrc-files/shortcuts.vim
   source $GLOBAL_SETTINGS_DIR/vimrc-files/macro-functions.vim
@@ -14,5 +14,5 @@ if has("nvim")
   highlight Search guifg=orchid1 guibg=gray16
   highlight IncSearch guifg=slateblue4 guibg=orchid3 gui=bold
   highlight Substitute guifg=orchid1 guibg=gray16
-  highlight MatchParen guifg=aquamarine3 guibg=bisque4 gui=bold
+  highlight MatchParen guifg=SpringGreen2 guibg=grey24 gui=bold
 endif

@@ -1,5 +1,5 @@
 " Brandon's vimrc
-set nocompatible              " be iMproved, required filetype off                  " required
+" set nocompatible              " be iMproved, required filetype off                  " required
 call plug#begin('~/.vim/plugged')
 set previewheight=20
 
@@ -10,6 +10,8 @@ set previewheight=20
 
 " Add Syntax Highlighting For Many Languages
 Plug 'sheerun/vim-polyglot'
+" Plug 'python-mode/python-mode'
+" let g:pymode_python = 'python3'
 Plug 'ElmCast/elm-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'jparise/vim-graphql'
@@ -17,6 +19,10 @@ Plug 'ayersb/vim-pgsql'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Rust Support
+Plug 'rust-lang/rust.vim'
+let g:rustfmt_autosave = 1
+Plug 'sebastianmarkow/deoplete-rust'
 
 " Enable flow plugin in vim-javascript
 let g:javascript_plugin_flow = 1
@@ -25,7 +31,7 @@ let g:javascript_plugin_flow = 1
 Plug 'sebdah/vim-delve'
 " Yankstack for yank history
 Plug 'maxbrunsfeld/vim-yankstack'
-" Vim node utlites
+" Vim node utilties
 Plug 'moll/vim-node'
 Plug 'heavenshell/vim-jsdoc'
 
@@ -62,6 +68,7 @@ let g:ale_sign_column_always = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
 let g:ale_linters = {
 \ 'awk': ['gawk'],
 \ 'text': ['proselint', 'vale'],
@@ -77,9 +84,11 @@ let g:ale_linters = {
 \ 'python': ['flake8', 'prospector', 'vulture'],
 \ 'sql': ['sqlint'],
 \ 'vim': ['vint'],
+\ 'rust': ['rls'],
 \ 'xml': ['xmllint'],
 \ 'yaml': ['swaglint', 'yamllint', 'prettier'],
 \}
+
 let g:ale_fixers = {
 \  '*': ['remove_trailing_lines', 'trim_whitespace'],
 \  'bash': ['shmt'],
@@ -90,10 +99,13 @@ let g:ale_fixers = {
 \ 'typescript': ['prettier', 'tslint'],
 \  'text': ['remove_trailing_lines', 'trim_whitespace'],
 \  'python': ['isort', 'black'],
+\  'rust': ['rustfmt'],
 \  'yaml': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_fix_on_save = 1
 let g:ale_go_golangci_lint_package = 1
+let g:ale_rust_rls_toolchain = 'stable'
+let g:ale_typescript_tsserver_config_path='~/gitv/athena/tsconfig.json'
 
 hi! link ALEError DiffDelete
 Plug 'itchyny/lightline.vim'
@@ -110,7 +122,6 @@ let g:lightline = {
   \   ],
   \   'right': [ [ 'lineinfo' ],
   \              [ 'percent' ],
-  \              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
   \              [ 'fileencoding', 'filetype' ]
   \     ]
   \ },
@@ -146,8 +157,9 @@ let g:SuperTabDefaultCompletionType = '<c-n>'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'wokalski/autocomplete-flow'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'zchee/deoplete-jedi'
-Plug 'zchee/deoplete-go', { 'do': 'make'}
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'deoplete-plugins/deoplete-docker'
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-zsh'
 Plug 'fszymanski/deoplete-emoji'
