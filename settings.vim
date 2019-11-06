@@ -30,6 +30,7 @@ set wildmode=list:longest
 set ruler
 " Show line numbers on right
 set number
+set relativenumber
 " Set auto indent and smart indent
 set autoindent
 set smartindent

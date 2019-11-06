@@ -1,6 +1,11 @@
 " Use Command window by default for user entered commands
 noremap <leader>; q:i
 " Shortcut for command editor mode
+
+" Quicker tab switch
+nnoremap J gT
+nnoremap K gt
+
 " Toggle column 80 marker
 " 	On
 noremap <leader>c :set colorcolumn=81<CR>
@@ -73,11 +78,11 @@ noremap <leader>tf :NERDTreeFind<CR>
 noremap <leader>t<leader>t :NERDTree<CR>
 
 " Git Fugitive Shortcuts
-" noremap <leader>gc :Gcommit<CR>
-noremap <leader>gs :Gstatus<CR>
+noremap <leader>v :Gstatus<CR>
+noremap <leader>gb :.Gbrowse<CR>
 
 " Taboo Shortcuts
-noremap <c-w><Tab> :tabe<CR>
+noremap <c-w><Tab> :tabnew ./<CR>
 noremap <c-w>c :TabooOpen<Space>
 noremap <c-w>, :TabooRename<Space>
 
@@ -106,9 +111,3 @@ map <leader>m :10messages<CR>
 " Copy filename to flipboard
 nmap <leader>yf :let @*=expand("%")<CR>
 nmap <leader>yF :let @*=expand("%:p")<CR>
-let g:bracket_pairs = {
-    \ '{':"}\<c-g>U\<left>",
-    \ '(':")\<c-g>U\<left>",
-    \ '[':"]\<c-g>U\<left>"
-    \ }
-inoremap <expr> = get(g:bracket_pairs, getline('.')[col('.')-2], '=')

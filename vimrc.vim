@@ -3,7 +3,7 @@
 
 source $GLOBAL_SETTINGS_DIR/vimrc-files/settings.vim
 
-if has('nvim')
+if and(has('nvim'), $USER != "root")
   source $GLOBAL_SETTINGS_DIR/vimrc-files/plugin-setup.vim
   source $GLOBAL_SETTINGS_DIR/vimrc-files/shortcuts.vim
   source $GLOBAL_SETTINGS_DIR/vimrc-files/macro-functions.vim

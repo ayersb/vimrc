@@ -10,8 +10,9 @@ set previewheight=20
 
 " Add Syntax Highlighting For Many Languages
 Plug 'sheerun/vim-polyglot'
-" Plug 'python-mode/python-mode'
-" let g:pymode_python = 'python3'
+Plug 'chr4/nginx.vim'
+" Plug 'uiiaoo/java-syntax.vim'
+
 Plug 'ElmCast/elm-vim'
 Plug 'pangloss/vim-javascript'
 Plug 'jparise/vim-graphql'
@@ -71,78 +72,89 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_linters = {
 \ 'awk': ['gawk'],
-\ 'text': ['proselint', 'vale'],
-\ 'bash': ['language-server', 'shfmt'],
+\ 'text': ['proselint', 'vale', 'textlint'],
+\ 'bash': ['shfmt'],
 \ 'dockerfile': ['hadolint'],
 \ 'go': ['golangci-lint'],
-\ 'graphql': ['eslint', 'prettier'],
-\ 'javascript': ['flow', 'eslint', 'prettier', 'prettier-eslint'],
-\ 'typescript': ['tsserver', 'tslint', 'prettier'],
+\ 'c': [],
+\ 'cpp': [],
 \ 'json': ['fixjson', 'jsonlint'],
+\ 'java': [],
+\ 'javascript': [],
+\ 'typescript': [],
 \ 'make': ['checkmake'],
-\ 'markdown': ['mdl', 'prettier', 'vale'],
-\ 'python': ['flake8', 'prospector', 'vulture'],
+\ 'markdown': ['mdl', 'prettier', 'vale', 'textlint'],
+\ 'python': [],
 \ 'sql': ['sqlint'],
-\ 'vim': ['vint'],
+\ 'vim': [],
 \ 'rust': ['rls'],
 \ 'xml': ['xmllint'],
 \ 'yaml': ['swaglint', 'yamllint', 'prettier'],
+\ 'html': ['prettier'],
+\ 'lua': ['luac', 'luacheck'],
 \}
 
 let g:ale_fixers = {
-\  '*': ['remove_trailing_lines', 'trim_whitespace'],
+\  '*': ['trim_whitespace'],
 \  'bash': ['shmt'],
+\  'markdown': ['prettier', 'textlint'],
 \  'elm': ['elm-format'],
 \  'go': ['gofmt', 'goimports'],
 \  'json': ['fixjson', 'prettier'],
-\ 'javascript': ['eslint', 'prettier'],
-\ 'typescript': ['prettier', 'tslint'],
-\  'text': ['remove_trailing_lines', 'trim_whitespace'],
+\  'text': ['trim_whitespace'],
 \  'python': ['isort', 'black'],
+\  'java': [],
 \  'rust': ['rustfmt'],
-\  'yaml': ['remove_trailing_lines', 'trim_whitespace'],
+\  'yaml': ['trim_whitespace'],
+\  'html': ['prettier'],
+\  'javascript': ['eslint', 'prettier'],
+\  'graphql': ['prettier']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_go_golangci_lint_package = 1
 let g:ale_rust_rls_toolchain = 'stable'
-let g:ale_typescript_tsserver_config_path='~/gitv/athena/tsconfig.json'
 
 hi! link ALEError DiffDelete
 Plug 'itchyny/lightline.vim'
 
-function! LightLineFilename()
-  return expand('%')
-endfunction
+" function! LightLineFilename()
+"   return expand('%')
+" endfunction
 
-let g:lightline = {
-  \ 'colorscheme': 'jellybeans',
-  \ 'active': {
-  \   'left': [ [ 'mode', 'paste' ],
-  \           [ 'readonly', 'relativepath', 'modified' ]
-  \   ],
-  \   'right': [ [ 'lineinfo' ],
-  \              [ 'percent' ],
-  \              [ 'fileencoding', 'filetype' ]
-  \     ]
-  \ },
-  \ 'inactive': {
-  \    'left': [[ 'readonly', 'relativepath', 'modified' ]],
-  \    'right': [['lineinfo'], ['percent'], [ 'fileencoding', 'filetype' ]]
-  \   },
-  \ 'component_expand': {
-  \   'linter_checking': 'lightline#ale#checking',
-  \   'linter_warnings': 'lightline#ale#warnings',
-  \   'linter_errors': 'lightline#ale#errors',
-  \   'linter_ok': 'lightline#ale#ok',
-  \ },
-  \ 'component_type': {
-  \     'linter_checking': 'left',
-  \     'linter_warnings': 'warning',
-  \     'linter_errors': 'error',
-  \     'linter_ok': 'left',
-  \ }
-  \}
-Plug 'maximbaz/lightline-ale'
+" let g:lightline = {
+"   \ 'colorscheme': 'jellybeans',
+"   \ 'active': {
+"   \   'left': [ [ 'mode', 'paste' ],
+"   \           [ 'readonly', 'relativepath', 'modified' ]
+"   \   ],
+"   \   'right': [ [ 'lineinfo' ],
+"   \              [ 'percent' ],
+"   \              [ 'fileencoding', 'filetype' ]
+"   \     ]
+"   \ },
+"   \ 'inactive': {
+"   \    'left': [[ 'readonly', 'relativepath', 'modified' ]],
+"   \    'right': [['lineinfo'], ['percent'], [ 'fileencoding', 'filetype' ]]
+"   \   },
+"   \ 'component_expand': {
+"   \   'linter_checking': 'lightline#ale#checking',
+"   \   'linter_warnings': 'lightline#ale#warnings',
+"   \   'linter_errors': 'lightline#ale#errors',
+"   \   'linter_ok': 'lightline#ale#ok',
+"   \ },
+"   \ 'component_type': {
+"   \     'linter_checking': 'left',
+"   \     'linter_warnings': 'warning',
+"   \     'linter_errors': 'error',
+"   \     'linter_ok': 'left',
+"   \ }
+"   \}
+" Plug 'maximbaz/lightline-ale'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+let g:airline_theme='base16'
+let g:airline_section_x = '%{PencilMode()}'
+let g:airline_powerline_fonts = 1
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug '/usr/local/opt/fzf'
@@ -153,19 +165,26 @@ Plug 'junegunn/fzf.vim'
 Plug 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = '<c-n>'
 
+" Intelli sense for vim
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+
 " For func argument completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'wokalski/autocomplete-flow'
-Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
-Plug 'deoplete-plugins/deoplete-jedi'
+" Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+" Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'deoplete-plugins/deoplete-docker'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/neco-vim'
 Plug 'zchee/deoplete-zsh'
 Plug 'fszymanski/deoplete-emoji'
 
+" Plug 'artur-shaik/vim-javacomplete2'
+Plug 'idanarye/vim-vebugger'
+let g:vebugger_leader='<Leader>o'
+
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 
 set runtimepath+=~/.vim/plugged/deoplete.nvim/
 let g:deoplete#enable_at_startup = 1
@@ -181,22 +200,25 @@ let g:formatdef_oracle_formater_osql = '"oracleFormatter"'
 " let g:formatters_sql = ['pg_formater_sql']
 let g:formatters_osql = ['oracle_formater_osql']
 
-" Easy way to run eslint
-Plug 'ruanyl/vim-fixmyjs'
 " Better text writing for vim
 Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-litecorrect'
 " Fancier spell check
 Plug 'reedes/vim-lexical'
 
+" PlantUML plugins for UML Diagraming
+Plug 'aklt/plantuml-syntax'
+Plug 'weirongxu/plantuml-previewer.vim'
+Plug 'tyru/open-browser.vim'
+Plug 'GEverding/vim-hocon'
 " Run pretter js from vim
-Plug 'prettier/vim-prettier', {'do': 'npm install'}
-let g:prettier#autoformat = 0
-let g:prettier#quickfix_enabled = 0
-augroup prettier
-  autocmd!
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
-augroup END
+" Plug 'prettier/vim-prettier', {'do': 'npm install'}
+" let g:prettier#autoformat = 0
+" let g:prettier#quickfix_enabled = 0
+" augroup prettier
+"   autocmd!
+"   autocmd BufWritePre *.js,*.jsx,*.mjs,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
+" augroup END
 
 " Vimtex ~ Latex plugin for vim
 "let g:livepreview_previewer = 'open -a Preview'
@@ -213,11 +235,22 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-dadbod'
 Plug 'plasticboy/vim-markdown'
 let g:vim_markdown_folding_disabled = 1
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
+let g:fugitive_gitlab_domains = ['https://orahub.oraclecorp.com/']
+Plug 'tommcdo/vim-fubitive'
+let g:fugitive_bitbucket_domains = ['https://bitbucket.oci.oraclecorp.com/']
 " Plugin for merge conflits dependent on fugitive
 Plug 'christoomey/vim-conflicted'
 
+" Better swap file handling
+Plug 'chrisbra/Recover.vim'
 
 Plug 'neomutt/neomutt.vim'
 " Initialize plugin system
