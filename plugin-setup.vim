@@ -39,6 +39,14 @@ Plug 'heavenshell/vim-jsdoc'
 " The *MOST* imporant plugin
 Plug 'junegunn/vim-emoji'
 
+" Intelli sense for vim
+Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+
+" Runs shell comands ansyc and ouputs to quickfix
+Plug 'skywind3000/asyncrun.vim'
+let g:asyncrun_open = 8
+cnoreabbrev ar AsyncRun
+
 " Add NERDTree
 Plug 'scrooloose/nerdTree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -64,7 +72,7 @@ let g:taboo_tab_format=' %N:%f%m(%W)'
 let g:taboo_renamed_tab_format=' %N:[%l](%W)'
 set guioptions-=e
 " Ale syntax linter
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 let g:ale_sign_column_always = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -99,19 +107,21 @@ let g:ale_fixers = {
 \  'bash': ['shmt'],
 \  'markdown': ['prettier', 'textlint'],
 \  'elm': ['elm-format'],
-\  'go': ['gofmt', 'goimports'],
+\  'go': ['goimports'],
 \  'json': ['fixjson', 'prettier'],
 \  'text': ['trim_whitespace'],
 \  'python': ['isort', 'black'],
-\  'java': [],
+\  'java': ['google_java_format'],
 \  'rust': ['rustfmt'],
 \  'yaml': ['trim_whitespace'],
 \  'html': ['prettier'],
-\  'javascript': ['eslint', 'prettier'],
+\  'javascript': [],
+\  'typescript': ['prettier'],
 \  'graphql': ['prettier']
 \}
 let g:ale_fix_on_save = 1
 let g:ale_go_golangci_lint_package = 1
+let g:ale_go_golangci_lint_options = '--fast'
 let g:ale_rust_rls_toolchain = 'stable'
 
 hi! link ALEError DiffDelete
@@ -162,11 +172,12 @@ Plug '~/.fzf'
 Plug 'junegunn/fzf.vim'
 
 " Enable using tab for completions
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = '<c-n>'
-
-" Intelli sense for vim
-Plug 'neoclide/coc.nvim', {'do': './install.sh nightly'}
+" Plug 'ervandew/supertab'
+" let g:SuperTabDefaultCompletionType = '<c-n>'
+" Enable auto omni complete
+Plug 'lifepillar/vim-mucomplete'
+let g:mucomplete#completion_delay = 3
+set completeopt+=menuone
 
 " For func argument completion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -253,6 +264,8 @@ Plug 'christoomey/vim-conflicted'
 Plug 'chrisbra/Recover.vim'
 
 Plug 'neomutt/neomutt.vim'
+
+Plug 'ayersb/vim-java-toleration', { 'for': 'java' }
 " Initialize plugin system
 call plug#end()
 filetype plugin indent on

@@ -9,6 +9,7 @@ function! InsertConsoleLogJs()
   endfunction
 
 
-function! OpenInIdea()
-    call jobstart("idea ". expand("%:p") . ":" . line("."))
-endfunction
+function! OpenInIntelijFn()
+    call jobstart("intelij ". expand("%:p") . ":" . line("."))
+  endfunction
+command OpenInIntelij :call OpenInIntelijFn()

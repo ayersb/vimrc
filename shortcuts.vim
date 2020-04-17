@@ -45,11 +45,14 @@ noremap X "xX
 " nnoremap <leader>d "*d
 " nnoremap d "xd
 
+" Allow easy search from visal mode
+vnoremap // "zy/\V<C-R>=escape(@",'/\')<CR><CR>
+vnoremap <leader>r "zy:Rg <C-R>z
+vnoremap <leader>r "zy:FZF<CR><C-R>z
+
 " shortcut to yank all
 noremap <leader>ay :%y+<CR>
-" Shortcut to search for chars under cursor in visual mode
-vnoremap <leader>/ y/<C-R>"<CR>
-"
+
 " Toggle Spellcheck
 noremap <leader>s :setlocal spell spelllang=en_us<CR>
 noremap <leader>ns :setlocal nospell<CR>

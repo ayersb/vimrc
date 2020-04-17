@@ -10,7 +10,7 @@ let &t_Co=256
 let base16colorspace=256
 let gterminal_color_0 =  '#ffffff'
 set cursorline
-
+set expandtab
 " Set color scheme & Backgroud
 if has('nvim')
   set viminfo+=n~/.vim/viminfo
@@ -36,6 +36,8 @@ set autoindent
 set smartindent
 " Set column 80 to be colored
 set colorcolumn=120
+set splitbelow
+set splitright
 
 " set hlsearch! # now controled by incsearch
 
@@ -59,3 +61,8 @@ set ttimeoutlen=0
 let mapleader=' '
 
 set cmdwinheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" set shortmess+=c
