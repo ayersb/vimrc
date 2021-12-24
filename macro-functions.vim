@@ -10,6 +10,9 @@ function! InsertConsoleLogJs()
 
 
 function! OpenInIntelijFn()
-    call jobstart("intelij ". expand("%:p") . ":" . line("."))
+    call jobstart("open -na \"IntelliJ IDEA.app\" --args --line ". line(".") . " ". expand("%:p"))
   endfunction
-command OpenInIntelij :call OpenInIntelijFn()
+
+function! JsonToPythonClass()
+  execute 's/^\(\s*\)"\(\a\+\)".*/\1self.\2 = kwargs.get("\2")'
+endfunction

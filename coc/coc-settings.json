@@ -1,0 +1,21 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": ["python", "typescript"],
+  "java.maven.downloadSources": true,
+  "java.import.maven.enabled": true,
+  "java.trace.server": "verbose",
+  "java.sources.organizeImports.starThreshold": 999,
+  "java.format.enabled": true,
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-1.8",
+      "path": "/Library/Java/JavaVirtualMachines/graalvm-ee-java8-21.0.0.2/Contents/Home/",
+      "default": true
+    }
+  ],
+  "python.formatting.provider": "black",
+  "python.linting.pylintEnabled": true,
+  "go.goplsOptions": {
+      "completeUnimported": true,
+      "allowImplicitNetworkAccess": true
+    }
+}

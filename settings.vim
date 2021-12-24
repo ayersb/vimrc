@@ -16,21 +16,24 @@ if has('nvim')
   set viminfo+=n~/.vim/viminfo
   set undofile
   set inccommand=nosplit
-  colorscheme base16-epistemi
-else
+
+  " To Install run: cp ~/Dropbox/ComputerSettings/vimrc-files/themes/base16-epistemi.vim ~/.vim/plugged/base16-vim/colors/
+ " autocmd vimenter * ++nested colorscheme gruvbox
+ " let g:gruvbox_contrast_dark="hard"
+
+ autocmd vimenter * ++nested colorscheme base16-epistemi
+ else
   colorscheme slate
 endif
 
 set wildmenu
 set wildmode=list:longest
 
-" colorscheme base16-chalk
 " set lazyredraw
 " Show line and character number in bottom right
 set ruler
 " Show line numbers on right
 set number
-set relativenumber
 " Set auto indent and smart indent
 set autoindent
 set smartindent

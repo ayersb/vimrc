@@ -6,6 +6,10 @@ noremap <leader>; q:i
 nnoremap J gT
 nnoremap K gt
 
+
+" Insert with space before word
+noremap <leader>i i<Space><ESC>i
+
 " Toggle column 80 marker
 " 	On
 noremap <leader>c :set colorcolumn=81<CR>
@@ -61,8 +65,7 @@ noremap <leader>ns :setlocal nospell<CR>
 noremap <leader>ff :Autoformat<CR>
 noremap <leader>fp :let @+ = expand("%:p")<CR>
 " FixWhiteSpace Shortcut
-noremap <leader>fw :FixWhitespace<CR>
-
+noremap <leader>fw :StripWhitespace<CR>
 " Tab management shortcuts
 noremap <c-w>` <c-w>T
 noremap <c-w><Left> :-tabmove<cr>
@@ -78,11 +81,12 @@ noremap <leader>p :FZF<CR>
 " Nerd Tree Shortcuts
 noremap <leader>tt :NERDTreeToggle<CR>
 noremap <leader>tf :NERDTreeFind<CR>
-noremap <leader>t<leader>t :NERDTree<CR>
 
 " Git Fugitive Shortcuts
-noremap <leader>v :Gstatus<CR>
-noremap <leader>gb :.Gbrowse<CR>
+noremap <leader>gb :.GBrowse<CR>
+noremap <leader>gy :.GBrowse!<CR>
+noremap <leader>gc :Git<CR>
+noremap <leader>gp :Git push<CR>
 
 " Taboo Shortcuts
 noremap <c-w><Tab> :tabnew ./<CR>
@@ -104,6 +108,7 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
+noremap <leader>o :call OpenInIntelijFn()<CR>
 " Easy motion shortcuts
 " map <leader>/ <Plug>(easymotion-overwin-w)
 " map <Leader>j <Plug>(easymotion-j)
@@ -114,3 +119,4 @@ map <leader>m :10messages<CR>
 " Copy filename to flipboard
 nmap <leader>yf :let @*=expand("%")<CR>
 nmap <leader>yF :let @*=expand("%:p")<CR>
+nmap <leader>l :<Up><CR>

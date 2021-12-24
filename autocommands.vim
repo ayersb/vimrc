@@ -5,9 +5,6 @@ augroup javascript
   autocmd Filetype javascript,typescript setlocal ts=2 sts=2 sw=2 colorcolumn=120
   autocmd Filetype javascript,typescript noremap <buffer> <F5> :call InsertConsoleLogJs()<CR>
   autocmd Filetype javascript,typescript noremap <buffer> <F4> :call SwapRoot()<CR>
-  " autocmd Filetype javascript noremap <buffer> <F3> :call RunJsFile()<CR>
-  " autocmd Filetype javascript noremap <buffer> <F2> :call RunJsFileOracle()<CR>
-
   autocmd Filetype javascript,typescript cnoreabbrev jsdoc JsDoc
   autocmd BufWritePre *.js :%s/^\(import.*from.*\)\$P\(.*\)$/\1\~\2/e
 augroup end
@@ -20,12 +17,12 @@ augroup textFiles
   autocmd Filetype text,markdown,mkd,gitcommit  call pencil#init({'wrap': 'soft'})
                                   \ | call lexical#init()
                                   \ | call litecorrect#init()
-
-  autocmd Filetype markdown setlocal colorcolumn=80 ts=2 sts=2 sw=2
+  autocmd Filetype text setlocal colorcolumn=100 ts=2 sts=2 sw=2
+  autocmd Filetype markdown setlocal colorcolumn=100 ts=2 sts=2 sw=2
   " Automatically enable spell check for commit messages and text files
-  autocmd BufWritePre COMMIT_EDITMSG,*.md,*.txt spell spelllang=en_us
+  autocmd Filetype markdown,text spell spelllang=en_us
+  autocmd BufWritePre COMMIT_EDITMSG spell spelllang=en_us
 
-  autocmd BufWritePre COMMIT_EDITMSG,*.md,*.txt %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/ge
 augroup END
 
 augroup sql
@@ -38,7 +35,7 @@ augroup END
 
 augroup shell
   autocmd!
-  autocmd Filetype sh,bash,zsh setlocal ts=4 sts=4 sw=4 colorcolumn=80
+  autocmd Filetype sh,bash,zsh setlocal ts=2 sts=2 sw=2 colorcolumn=80
 augroup END
 
 augroup puml
@@ -49,8 +46,10 @@ augroup end
 
 augroup java
   autocmd!
-  autocmd Filetype java setlocal colorcolumn=110 ts=8 sts=8 sw=4
-  autocmd FileType java noremap <buffer> <F5> :OpenInIntelij<CR>
+
+  autocmd FileType java Glaive codefmt google_java_executable='JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.9.jdk/Contents/Home google-java-format -a'
+  " autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd Filetype java setlocal colorcolumn=180 ts=8 sts=8 sw=4
   autocmd Filetype java highlight Operator ctermfg=5  guifg=#d175bc
                     \ | highlight Typedef ctermfg=5  guifg=#d175bc
                     \ | highlight Type ctermfg=4  guifg=#69b7d3
@@ -62,9 +61,11 @@ augroup java
                     \ | highlight link javaDocTags PreProc
 augroup end
 
-augroup deopletDisable
-  autocmd!
-  autocmd FileType javascript,typescript,python,java,yaml,lisp,yaml,docker,sh call deoplete#custom#buffer_option('auto_complete', v:false)
+augroup thehighlights
+  autocmd BufRead,BufNewFile highlight Search guifg=orchid1 guibg=gray16
+  autocmd BufRead,BufNewFile highlight IncSearch guifg=slateblue4 guibg=orchid3 gui=bold
+  autocmd BufRead,BufNewFile highlight Substitute guifg=orchid1 guibg=gray16
+  autocmd BufRead,BufNewFile highlight MatchParen guifg=SpringGreen2 guibg=grey24 gui=bold
 augroup end
 
 augroup misc
