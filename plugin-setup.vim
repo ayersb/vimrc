@@ -243,6 +243,8 @@ noremap  <silent> <leader>9 :TestFile<CR>
 noremap  <silent> <leader>8 :TestFile<CR>
 Plug 'vim-scripts/AnsiEsc.vim'
 
+Plug 'chrisbra/Colorizer'
+
 " Intelli sense for vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Initialize plugin system

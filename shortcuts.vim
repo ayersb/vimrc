@@ -12,9 +12,7 @@ noremap <leader>i i<Space><ESC>i
 
 " Toggle column 80 marker
 " 	On
-noremap <leader>c :set colorcolumn=81<CR>
-" 	Off
-noremap <leader>nc :set colorcolumn=-1<CR>
+noremap <leader>c :ColorToggle<CR>
 
 noremap <M-w> <C-w>
 " Resize Buffers

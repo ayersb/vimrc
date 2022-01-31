@@ -1,3 +1,27 @@
+function! CocInstallExtensionList()
+  let cocExtList = join([
+        \"coc-pyright",
+        \"coc-eslint",
+        \"coc-fzf-preview",
+        \"coc-gist",
+        \"coc-graphql",
+        \"coc-html",
+        \"coc-jedi",
+        \"coc-json",
+        \"coc-markdownlint",
+        \"coc-nginx",
+        \"coc-prettier",
+        \"coc-rls",
+        \"coc-rust",
+        \"coc-sql",
+        \"coc-tsserver",
+        \"coc-xml",
+        \"coc-yaml",
+        \"coc-yank",
+        \])
+  :execute "CocInstall" cocExtList
+endfunction
+
 augroup coc
   autocmd!
   " Always show the signcolumn, otherwise it would shift the text each time
