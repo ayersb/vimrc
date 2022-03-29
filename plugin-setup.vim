@@ -5,7 +5,9 @@ set previewheight=20
 
 " Rip grep search
 "Plug 'jremmen/vim-ripgrep'
+Plug 'lifepillar/pgsql.vim'
 
+let g:sql_type_default = 'pgsql'
 Plug 'morhetz/gruvbox'
 
 ":let Grep_Skip_Dirs = 'RCS CVS SCCS node_modules tmp .git .github .tmp build converage'
@@ -20,7 +22,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'jparise/vim-graphql'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Rust Support
 Plug 'rust-lang/rust.vim'
 let g:rustfmt_autosave = 1
@@ -72,66 +74,16 @@ Plug 'gcmt/taboo.vim'
 let g:taboo_tab_format=' %N:%f%m(%W)'
 let g:taboo_renamed_tab_format=' %N:[%l](%W)'
 set guioptions-=e
-" " Ale syntax linter
-" " Plug 'dense-analysis/ale'
-" let g:ale_sign_column_always = 1
-" let g:ale_echo_msg_error_str = 'E'
-" let g:ale_echo_msg_warning_str = 'W'
-" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-" let g:ale_linters = {
-" \ 'awk': ['gawk'],
-" \ 'text': ['proselint', 'vale', 'textlint'],
-" \ 'bash': ['shfmt'],
-" \ 'dockerfile': ['hadolint'],
-" \ 'go': ['golangci-lint'],
-" \ 'c': [],
-" \ 'cpp': [],
-" \ 'json': ['fixjson', 'jsonlint'],
-" \ 'java': [],
-" \ 'javascript': [],
-" \ 'typescript': [],
-" \ 'make': ['checkmake'],
-" \ 'markdown': ['mdl', 'prettier', 'vale', 'textlint'],
-" \ 'python': [],
-" \ 'sql': ['sqlint'],
-" \ 'vim': [],
-" \ 'rust': ['rls'],
-" \ 'xml': ['xmllint'],
-" \ 'yaml': ['swaglint', 'yamllint', 'prettier'],
-" \ 'html': ['prettier'],
-" \ 'lua': ['luac', 'luacheck'],
-" \}
 
-" let g:ale_fixers = {
-" \  '*': ['trim_whitespace'],
-" \  'bash': ['shmt'],
-" \  'markdown': ['prettier', 'textlint'],
-" \  'elm': ['elm-format'],
-" \  'go': ['goimports'],
-" \  'json': ['fixjson', 'prettier'],
-" \  'text': ['trim_whitespace'],
-" \  'python': ['isort', 'black'],
-" \  'java': ['google_java_format'],
-" \  'rust': ['rustfmt'],
-" \  'yaml': ['trim_whitespace'],
-" \  'html': ['prettier'],
-" \  'javascript': [],
-" \  'typescript': ['prettier'],
-" \  'graphql': ['prettier']
-" \}
-" let g:ale_fix_on_save = 1
-" let g:ale_go_golangci_lint_package = 1
-" let g:ale_go_golangci_lint_options = '--fast'
-" let g:ale_rust_rls_toolchain = 'stable'
-
-" hi! link ALEError DiffDelete
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 " call glaive#Install()
 
-Plug 'psf/black', { 'branch': 'stable' }
+Plug 'psf/black', { 'tag': '19.10b0' }
+let g:black_target_version = "19.10.b0"
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 let g:airline_theme='base16'
@@ -140,6 +92,11 @@ let g:airline_powerline_fonts = 1
 
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
+command! -bang -nargs=* Rg 
+      \ call fzf#vim#grep(
+      \ "rg --column --line-number --no-heading --color=always --smart-case --glob '!*.lock' --no-ignore-exclude -- ".shellescape(<q-args>), 1,
+      \ fzf#vim#with_preview(), <bang>0)
 
 " Enable using tab for completions
 " Plug 'ervandew/supertab'
@@ -241,7 +198,7 @@ let test#strategy = "neovim"
 noremap  <silent> <leader>0 :TestNearest<CR>
 noremap  <silent> <leader>9 :TestFile<CR>
 noremap  <silent> <leader>8 :TestFile<CR>
-Plug 'vim-scripts/AnsiEsc.vim'
+Plug 'powerman/vim-plugin-AnsiEsc'
 
 Plug 'chrisbra/Colorizer'
 

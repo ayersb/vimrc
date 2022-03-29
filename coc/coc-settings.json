@@ -1,17 +1,46 @@
 {
 
   "coc.preferences.extensionUpdateCheck": "weekly",
-
+  "coc.preferences.formatOnSaveFiletypes": ["go", "javascript"],
   "pyright.enable": true,
   "python.analysis.diagnosticMode": "openFilesOnly",
   "python.analysis.typeCheckingMode": "basic",
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
-  "python.linting.pylintEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "pyright.disableDiagnostics": true,
   "pyright.completion.importSupport": true,
   "pyright.completion.snippetSupport": true,
-  "pyright.organizeimports.provider": "pyright"
+  "pyright.organizeimports.provider": "isort",
+  "python.venvPath": ".venv",
+  "python.pythonPath": ".venv/bin/python",
+  "python.sortImports.args": [
+            "-rc",
+            "-sp isort.cfg"
+        ],
 
-
-
+  "sql.formatOptions": {
+    "language": "postgresql"
+  },
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "email": "languagetool",
+    "markdown":  "write-good",
+    "sh": "shellcheck",
+    "elixir": ["mix_credo", "mix_credo_compile"],
+    "eelixir": ["mix_credo", "mix_credo_compile"],
+    "php": ["phpstan", "psalm"],
+    "yaml": [ "yamllint" ],
+    "cmake": [ "cmake-lint", "cmakelint" ],
+    "systemd": "systemd-analyze"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "dart": "dartfmt",
+    "elixir": "mix_format",
+    "eelixir": "mix_format",
+    "lua": "lua-format",
+    "sh": "shfmt",
+    "blade": "blade-formatter",
+    "cmake": "cmake-format"
+  }
 }

@@ -30,7 +30,14 @@ noremap <leader>b :Buffers<CR>
 noremap <leader>nh :set hlsearch!<CR>
 "
 " Start a ripgrep search
-noremap <leader>r q:iRg<Space><ESC>a
+noremap <leader>r :Rg<CR>
+
+" Use Fzf with fd for fuzzy find
+" Runs fzf.vim's :Files function using fzf default command
+noremap <C-p> :Files<CR>
+
+
+
 " Toggle folding by syntax
 noremap <leader>fms :setlocal foldmethod=syntax<CR>
 noremap <leader>fmi :setlocal foldmethod=indent<CR>
@@ -49,8 +56,8 @@ noremap X "xX
 
 " Allow easy search from visal mode
 vnoremap // "zy/\V<C-R>=escape(@",'/\')<CR><CR>
-vnoremap <leader>r "zy:Rg <C-R>z
-vnoremap <leader>r "zy:FZF<CR><C-R>z
+vnoremap <leader>r "zy:Rg <C-R>z<CR>
+vnoremap <leader>p "zy:Files<CR><C-R>z
 
 " shortcut to yank all
 noremap <leader>ay :%y+<CR>
@@ -70,11 +77,6 @@ noremap <c-w><Left> :-tabmove<cr>
 noremap <c-w><Right> :+tabmove<cr>
 
 " Plugin Shortcuts
-"
-"
-" Use Fzf with fd for fuzzy find
-noremap <C-p> :FZF<CR>
-noremap <leader>p :FZF<CR>
 
 " Nerd Tree Shortcuts
 noremap <leader>tt :NERDTreeToggle<CR>

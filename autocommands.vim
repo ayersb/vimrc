@@ -28,9 +28,6 @@ augroup END
 augroup sql
   autocmd!
   autocmd Filetype sql setlocal ts=2 sts=2 sw=2
-  autocmd BufRead,BufNewFile afiedt.buf set filetype=osql
-  autocmd BufRead,BufNewFile afiedt.buf set syntax=sql
-  autocmd BufWritePre *.sql,afiedt.buf Autoformat
 augroup END
 
 augroup shell
@@ -47,15 +44,13 @@ augroup end
 augroup java
   autocmd!
 
-  autocmd FileType java Glaive codefmt google_java_executable='JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.9.jdk/Contents/Home google-java-format -a'
+  " autocmd FileType java Glaive codefmt google_java_executable='JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-11.0.9.jdk/Contents/Home google-java-format -a'
   " autocmd FileType java AutoFormatBuffer google-java-format
   autocmd Filetype java setlocal colorcolumn=180 ts=8 sts=8 sw=4
   autocmd Filetype java highlight Operator ctermfg=5  guifg=#d175bc
                     \ | highlight Typedef ctermfg=5  guifg=#d175bc
                     \ | highlight Type ctermfg=4  guifg=#69b7d3
                     \ | highlight Number term=bold ctermfg=16 gui=bold guifg=#d2d22d
-                    \ | let java_highlight_functions = 1
-                    \ | let java_highlight_all = 1
                     \ | highlight link javaScopeDecl Statement
                     \ | highlight link javaType Type
                     \ | highlight link javaDocTags PreProc
@@ -68,19 +63,19 @@ augroup thehighlights
   autocmd BufRead,BufNewFile highlight MatchParen guifg=SpringGreen2 guibg=grey24 gui=bold
 augroup end
 
+augroup python
+  autocmd Filetype python setlocal colorcolumn=88
+  autocmd BufWrite *.py silent Black
+augroup end
+
 augroup misc
   autocmd!
   autocmd Filetype vim setlocal ts=2 sts=2 sw=2 colorcolumn
   autocmd FileType lua,hocon setlocal ts=2 sts=2 sw=2
   autocmd Filetype go setlocal ts=4 sts=4 sw=4
-  autocmd Filetype python setlocal colorcolumn=88
   autocmd Filetype conf setlocal colorcolumn=88
   autocmd Filetype smarty setlocal ts=2 sts=2 sw=2
-  autocmd BufRead,BufNewFile afiedt.buf set filetype=osql
-  autocmd BufRead,BufNewFile *.conf.template set syntax=nginx
+  autocmd BufRead,BufNewFile *.template set syntax=nginx
 
   autocmd BufRead,BufNewFile *.conf.template setlocal ts=4 sts=4 sw=2
-
-  " For neomutt
-  autocmd BufRead neomutt-* set tw=72
 augroup end

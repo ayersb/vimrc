@@ -1,5 +1,5 @@
 function! CocInstallExtensionList()
-  let cocExtList = join([
+  let cocExtList = [
         \"coc-pyright",
         \"coc-eslint",
         \"coc-fzf-preview",
@@ -8,7 +8,6 @@ function! CocInstallExtensionList()
         \"coc-html",
         \"coc-jedi",
         \"coc-json",
-        \"coc-markdownlint",
         \"coc-nginx",
         \"coc-prettier",
         \"coc-rls",
@@ -18,8 +17,14 @@ function! CocInstallExtensionList()
         \"coc-xml",
         \"coc-yaml",
         \"coc-yank",
-        \])
-  :execute "CocInstall" cocExtList
+        \"coc-go",
+        \"coc-cfn-lint",
+        \]
+
+  let s = 0
+  let e = 10
+
+  for cocEx in cocExtList | execute "CocInstall" cocEx | endfor
 endfunction
 
 augroup coc
