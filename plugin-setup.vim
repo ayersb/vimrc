@@ -23,9 +23,9 @@ Plug 'jparise/vim-graphql'
 Plug 'eagletmt/ghcmod-vim'
 Plug 'eagletmt/neco-ghc'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Rust Support
-Plug 'rust-lang/rust.vim'
-let g:rustfmt_autosave = 1
+" Old Rust Support
+" Plug 'rust-lang/rust.vim'
+" let g:rustfmt_autosave = 1
 
 " Enable flow plugin in vim-javascript
 let g:javascript_plugin_flow = 1
@@ -54,10 +54,7 @@ Plug 'scrooloose/nerdTree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 let NERDTreeShowLineNumbers=1
 let NERDTreeQuitOnOpen=0
-" Other file browser
-Plug 'mcchrish/nnn.vim'
-" Add SuperTab
-" Plug 'ervandew/supertab'
+let NERDTreeShowHidden=1
 
 " Add Rainbow Parenthesis
 Plug 'luochen1990/rainbow'
@@ -69,6 +66,7 @@ let g:undotree_WindowLayout = 3
 nnoremap <F1> :UndotreeToggle<cr>
 
 Plug 'sirtaj/vim-openscad'
+
 " Taboo for tabs
 Plug 'gcmt/taboo.vim'
 let g:taboo_tab_format=' %N:%f%m(%W)'
@@ -81,8 +79,8 @@ Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
 " call glaive#Install()
 
-Plug 'psf/black', { 'tag': '19.10b0' }
-let g:black_target_version = "19.10.b0"
+" Plug 'psf/black', { 'tag': '19.10b0' }
+" let g:black_target_version = "19.10.b0"
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -95,30 +93,42 @@ Plug 'junegunn/fzf.vim'
 
 command! -bang -nargs=* Rg 
       \ call fzf#vim#grep(
-      \ "rg --column --line-number --no-heading --color=always --smart-case --glob '!*.lock' --no-ignore-exclude -- ".shellescape(<q-args>), 1,
+      \ "rg --column --line-number --no-heading --color=always --smart-case --hidden --glob '!*.lock' --glob '!.git/**' --no-ignore-exclude -- ".shellescape(<q-args>), 1,
       \ fzf#vim#with_preview(), <bang>0)
 
 " Enable using tab for completions
 " Plug 'ervandew/supertab'
 " let g:SuperTabDefaultCompletionType = '<c-n>'
+
 " Enable auto omni complete
-Plug 'lifepillar/vim-mucomplete'
-let g:mucomplete#completion_delay = 3
-set completeopt+=menuone
+"Plug 'lifepillar/vim-mucomplete'
+"let g:mucomplete#completion_delay = 3
+"set completeopt+=menuone
 
 
-Plug 'idanarye/vim-vebugger'
-let g:vebugger_leader='<Leader>o'
+" TODO: STUFF DIABLED BECAUSE IDK IM USING IT
+" Plug 'idanarye/vim-vebugger'
+" let g:vebugger_leader='<Leader>o'
+"
+" Plug 'Shougo/neosnippet'
+" Plug 'Shougo/neosnippet-snippets'
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+" let g:neosnippet#enable_completed_snippet = 1
+"
+"" Easy Motion
+" Plug 'easymotion/vim-easymotion'
+" let g:EasyMotion_smartcase = 1
+" Plug 'vim-test/vim-test'
+" let test#strategy = "neovim"
+" noremap  <silent> <leader>0 :TestNearest<CR>
+" noremap  <silent> <leader>9 :TestFile<CR>
+" noremap  <silent> <leader>8 :TestFile<CR>
 
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-
-let g:neosnippet#enable_completed_snippet = 1
+"  END DISABLED STUFF
+"
 " Highlight trailing whitespace :FixWhitespace to fix
 Plug 'ntpeters/vim-better-whitespace'
-" let g:strip_whitespace_confirm 0
-" let g:strip_only_modified_line 1
+Plug 'bronson/vim-trailing-whitespace'
 
 " Add nice themes for vim
 Plug 'fnune/base16-vim'
@@ -126,30 +136,17 @@ Plug 'fnune/base16-vim'
 " Better text writing for vim
 Plug 'reedes/vim-pencil'
 Plug 'reedes/vim-litecorrect'
+
 " Fancier spell check
 Plug 'reedes/vim-lexical'
 
 " PlantUML plugins for UML Diagraming
 Plug 'aklt/plantuml-syntax'
 Plug 'weirongxu/plantuml-previewer.vim'
+
 Plug 'tyru/open-browser.vim'
 Plug 'GEverding/vim-hocon'
-" Run pretter js from vim
-" Plug 'prettier/vim-prettier', {'do': 'npm install'}
-" let g:prettier#autoformat = 0
-" let g:prettier#quickfix_enabled = 0
-" augroup prettier
-"   autocmd!
-"   autocmd BufWritePre *.js,*.jsx,*.mjs,*.css,*.less,*.scss,*.json,*.graphql,*.vue PrettierAsync
-" augroup END
 
-" Vimtex ~ Latex plugin for vim
-"let g:livepreview_previewer = 'open -a Preview'
-
-Plug 'haya14busa/incsearch.vim'
-" Easy Motion
-Plug 'easymotion/vim-easymotion'
-let g:EasyMotion_smartcase = 1
 
 " The TPope plugins
 Plug 'tpope/vim-fugitive'
@@ -160,7 +157,7 @@ Plug 'tpope/vim-tbone'
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-eunuch'
+" Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-unimpaired'
 Plug 'dhruvasagar/vim-table-mode'
 " Gbrowse bitbucket
@@ -168,6 +165,7 @@ Plug 'tommcdo/vim-fubitive'
 " let g:fubitive_domain_pattern = ''
 " Plug 'tpope/vim-dadbod'
 Plug 'plasticboy/vim-markdown'
+" let g:markdown_folding = 1
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_toc_autofit = 1
 let g:vim_markdown_new_list_item_indent = 2
@@ -175,8 +173,10 @@ let g:vim_markdown_new_list_item_indent = 2
 
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
+
 " let g:fugitive_gitlab_domains = ['']
 Plug 'tommcdo/vim-fubitive'
+
 " let g:fugitive_bitbucket_domains = ['']
 " Plugin for merge conflits dependent on fugitive
 Plug 'christoomey/vim-conflicted'
@@ -187,23 +187,47 @@ Plug 'chrisbra/Recover.vim'
 Plug 'neomutt/neomutt.vim'
 
 Plug 'tyru/open-browser.vim'
-let g:openbrowser_default_search = "duckduckgo"
+let g:openbrowser_default_search = "google"
 vmap O <Plug>(openbrowser-smart-search)
 
 Plug 'machakann/vim-highlightedyank'
 Plug 'jez/vim-superman'
 
-Plug 'vim-test/vim-test'
-let test#strategy = "neovim"
-noremap  <silent> <leader>0 :TestNearest<CR>
-noremap  <silent> <leader>9 :TestFile<CR>
-noremap  <silent> <leader>8 :TestFile<CR>
+
 Plug 'powerman/vim-plugin-AnsiEsc'
 
+Plug 'google/vim-jsonnet'
 Plug 'chrisbra/Colorizer'
 
+" Plug 'ttibsi/pre-commit.nvim'
 " Intelli sense for vim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+
+" Copilot
+Plug 'github/copilot.vim'
+
+
+" Tmux integration with vim
+Plug 'preservim/vimux'
+let g:VimuxHeight = "20"
+let g:VimuxOrientation = "v"
+let g:VimuxUseNearest = 0
+let g:VimuxResetSequence = "q C-u"
+let g:VimuxPromptString = "Command? "
+let g:VimuxRunnerType = "pane"
+let g:VimuxRunnerName = ""
+let g:VimuxCloseOnExit = 0
+
+Plug 'vim-autoformat/vim-autoformat'
+
+" Only run linters named in ale_linters settings.
+let g:ale_linters_explicit = 1
+let b:ale_linters = {'openscad': ['sca2d']}
+Plug 'dense-analysis/ale'
+Plug 'hashivim/vim-terraform'
+
 " Initialize plugin system
 call plug#end()
 filetype plugin indent on

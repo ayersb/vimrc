@@ -2,30 +2,31 @@
 
   "coc.preferences.extensionUpdateCheck": "weekly",
   "coc.preferences.formatOnSaveFiletypes": ["go", "javascript"],
+  "coc.preferences.willSaveHandlerTimeout": 1000,
   "pyright.enable": true,
   "python.analysis.diagnosticMode": "openFilesOnly",
+
+  "python.analysis.diagnosticSeverityOverrides": {
+    "python.analysis.diagnosticSeverityOverrides": { 
+        "ruff" : "error",
+    }
+  },
   "python.analysis.typeCheckingMode": "basic",
   "python.formatting.provider": "black",
   "python.linting.enabled": true,
-  "python.linting.flake8Enabled": true,
-  "pyright.disableDiagnostics": true,
+  "python.linting.ruffEnabled": true,
+  "python.linting.mypyEnabled": true,
   "pyright.completion.importSupport": true,
-  "pyright.completion.snippetSupport": true,
-  "pyright.organizeimports.provider": "isort",
-  "python.venvPath": ".venv",
-  "python.pythonPath": ".venv/bin/python",
-  "python.sortImports.args": [
-            "-rc",
-            "-sp isort.cfg"
-        ],
-
+  "pyright.completion.snippetSupport": false,
+  "pyright.organizeimports.provider": "ruff",
+  "python.pythonPath": "/Users/brandon.ayers/Library/Caches/pypoetry/virtualenvs/myvenv-C0EuxiXr-py3.10/bin/python",
+  "pyright.disableDiagnostics": false,
   "sql.formatOptions": {
     "language": "postgresql"
   },
   "diagnostic-languageserver.filetypes": {
     "vim": "vint",
     "email": "languagetool",
-    "markdown":  "write-good",
     "sh": "shellcheck",
     "elixir": ["mix_credo", "mix_credo_compile"],
     "eelixir": ["mix_credo", "mix_credo_compile"],
@@ -42,5 +43,14 @@
     "sh": "shfmt",
     "blade": "blade-formatter",
     "cmake": "cmake-format"
-  }
+  },
+  "languageserver":{
+    "arduino":{
+      "command":"arduino-language-server",
+      "rootPatterns":["*.ino"],
+      "filetypes":["arduino"],
+      "args":["-cli", "arduino-cli", "-clangd", "clangd", "-cli-config", "/Users/brandon.ayers/Library/Arduino15/arduino-cli.yaml", "-fqbn", "arduino:avr:uno"]
+    }
+  },
+  "rust-analyzer.enable": true
 }

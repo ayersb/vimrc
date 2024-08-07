@@ -3,22 +3,21 @@ function! CocInstallExtensionList()
         \"coc-pyright",
         \"coc-eslint",
         \"coc-fzf-preview",
-        \"coc-gist",
-        \"coc-graphql",
         \"coc-html",
-        \"coc-jedi",
         \"coc-json",
-        \"coc-nginx",
+        \"@yaegassy/coc-nginx",
         \"coc-prettier",
         \"coc-rls",
         \"coc-rust",
         \"coc-sql",
         \"coc-tsserver",
+        \"coc-htmldjango",
         \"coc-xml",
         \"coc-yaml",
         \"coc-yank",
         \"coc-go",
         \"coc-cfn-lint",
+        \"coc-spell-checker",
         \]
 
   let s = 0
@@ -45,9 +44,11 @@ augroup coc
   nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
   " Use `[g` and `]g` to navigate diagnostics
-  nmap <silent> [g <Plug>(coc-diagnostic-prev)
-  nmap <silent> ]g <Plug>(coc-diagnostic-next)
-  " Use <c-space> to trigger completion.
+  nmap <silent> [f <Plug>(coc-diagnostic-prev)
+  nmap <silent> ]f <Plug>(coc-diagnostic-next)
+  nmap <silent> [g <Plug>(coc-diagnostic-prev-error)
+  nmap <silent> ]g <Plug>(coc-diagnostic-next-error)
+  " Use <c-space> to trigger completion in insert mode.
   inoremap <silent><expr> <c-space> coc#refresh()
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -59,7 +60,9 @@ augroup coc
 
   " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
   " Coc only does snippet and additional edit on confirm.
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  "
+  " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+  inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
   " Use K to show documentation in preview window
   nnoremap <silent> <leader>jd :call <SID>show_documentation()<CR>
 
@@ -90,14 +93,16 @@ augroup coc
   augroup end
 
   " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-  xmap <leader>ja  <Plug>(coc-codeaction-selected)
-  nmap <leader>ja  <Plug>(coc-codeaction-selected)
+  xmap <leader>a  <Plug>(coc-codeaction-selected)
+  nmap <leader>a  <Plug>(coc-codeaction-selected)
 
   " Remap for do codeAction of current line
-  nmap <leader>jac  <Plug>(coc-codeaction)
+  nmap <leader>ac  <Plug>(coc-codeaction)
   " Fix autofix problem of current line
-  nmap <leader>jqf  <Plug>(coc-fix-current)
+  nmap <leader>af  <Plug>(coc-fix-current)
 
+  " Add word to cspell dict
+  nmap <leader>' :CocCommand cSpell.addWordToDictionary<cr>
   " Create mappings for function text object, requires document symbols feature of languageserver.
   " xmap if <Plug>(coc-funcobj-i)
   " xmap af <Plug>(coc-funcobj-a)
@@ -137,4 +142,5 @@ augroup coc
   " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
   " " Resume latest coc list
   " nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+  "
 augroup end

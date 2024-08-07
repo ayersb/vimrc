@@ -20,12 +20,35 @@ if has('nvim')
   " To Install run: cp ~/Dropbox/ComputerSettings/vimrc-files/themes/base16-epistemi.vim ~/.vim/plugged/base16-vim/colors/
  " autocmd vimenter * ++nested colorscheme gruvbox
  " let g:gruvbox_contrast_dark="hard"
+  function SetStartColorScheme()
+    try
+      let outside_mode = readfile('/tmp/working-outside.txt', '', 1)[0]
+    catch
+      let outside_mode = 'false'
+    endtry
+    if outside_mode != 'true'
+      autocmd vimenter * ++nested colorscheme base16-epistemi
+    else
+        autocmd vimenter * ++nested colorscheme base16-light-epistemi
+    endif
+  endfunction
+  call SetStartColorScheme()
+  function SetColorScheme()
+      try
+        let outside_mode = readfile('/tmp/working-outside.txt', '', 1)[0]
+      catch
+        let outside_mode = 'false'
+      endtry
+      if outside_mode != 'true'
+        colorscheme base16-epistemi
+      else
+        colorscheme base16-light-epistemi
+      endif
+    endfunction
 
- autocmd vimenter * ++nested colorscheme base16-epistemi
- else
+else
   colorscheme slate
 endif
-
 set wildmenu
 set wildmode=list:longest
 
@@ -42,7 +65,6 @@ set colorcolumn=120
 set splitbelow
 set splitright
 
-" set hlsearch! # now controled by incsearch
 
 " Case-sensitive only if search contains uppercase characters
 set ignorecase
